@@ -27,29 +27,34 @@ class ViewController: UIViewController {
     }
 
     @IBAction func pressedButton() {
-        if  startOrNextButton.isEnabled {
-            startOrNextButton.setTitle("NEXT", for: .normal)
-            redLightView.alpha = 1
-            greenLightView.alpha = 0.3
-            yellowLightView.alpha = 0.3
-        }
-        /* startOrNextButton.setTitle("NEXT", for: .selected)
-         if startOrNextButton.isSelected {
-            startOrNextButton.title(for: .selected)
-        }
-            
-           redLightView.alpha = 1
-            greenLightView.alpha = 0.3
-            yellowLightView.alpha = 0.3
-            redLightView.alpha = 0.3
-            greenLightView.alpha = 1
-            yellowLightView.alpha = 0.3
-            redLightView.alpha = 0.3
-            greenLightView.alpha = 0.3
-            yellowLightView.alpha = 1
-        } */
         
+        
+        if startOrNextButton.isEnabled {
+            switch (redLightView.alpha, greenLightView.alpha, yellowLightView.alpha) {
+            
+            case (0.3, 0.3, 0.3):
+                redLightView.alpha = 1.0
+                startOrNextButton.setTitle("NEXT", for: .normal)
+                
+                fallthrough
+            case (1.0, 0.3, 0.3):
+                yellowLightView.alpha = 1.0
+                redLightView.alpha = 0.3
+                
+                fallthrough
+            case (0.3, 1.0, 0.3):
+                greenLightView.alpha = 1.0
+                yellowLightView.alpha = 0.3
+                
+                fallthrough
+            case (0.3, 0.3, 1.0):
+                redLightView.alpha = 1.0
+                greenLightView.alpha = 0.3
+            default:
+                startOrNextButton.setTitle("NEXT", for: .normal)
+            }
+            }
+        }
     }
     
-}
 
